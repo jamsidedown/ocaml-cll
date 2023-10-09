@@ -1,0 +1,3 @@
+(test
+ (name cll_tests)
+ (libraries ounit2 cll))

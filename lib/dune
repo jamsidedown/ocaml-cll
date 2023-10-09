@@ -1,0 +1,4 @@
+(library
+ (public_name cll)
+ (synopsis "Mutable circular linked list")
+ (name cll))
