@@ -1,10 +1,10 @@
-type 'a node = {
+type 'a node = private {
   value: 'a;
   mutable left: 'a node;
   mutable right: 'a node;
 }
 
-type 'a cll = {
+type 'a cll = private {
   mutable head : 'a node option;
   mutable length: int;
 }

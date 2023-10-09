@@ -41,7 +41,7 @@ let add_to_list _ =
     (* rotate head ccw and insert between old head and right *)
 
 let add_multiple _ =
-  let cll : int Cll.cll = { head = None; length = 0 } in
+  let cll = Cll.init [] in
   Cll.add cll 1;
   Cll.add cll 2;
   Cll.add cll 3;
