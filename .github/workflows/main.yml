@@ -25,10 +25,10 @@ jobs:
         with:
           ocaml-compiler: "5.0"
           dune-cache: true
+      - name: "opam eval"
+        run: "eval $(opam env)"
       - name: "install dependencies"
-        run: |
-          "opam install . --deps-only --with-test"
-          "eval $(opam env)"
+        run: "opam install . --deps-only --with-test"
       - name: "build"
         run: "dune build"
       - name: "test"
