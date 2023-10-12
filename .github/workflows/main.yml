@@ -33,8 +33,6 @@ jobs:
         run: "opam exec -- dune build"
       - name: "test"
         run: "opam exec -- dune test"
-      - name: "list packages"
-        run: "opam list | grep bisect"
       - name: "coverage"
         run: "opam exec -- dune runtest --instrument-with bisect_ppx --force"
       - name: "coverage report"
