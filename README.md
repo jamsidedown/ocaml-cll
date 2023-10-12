@@ -1,6 +1,8 @@
 # ocaml-cll
 OCaml circular linked list library
 
+[![build and test](https://github.com/jamsidedown/ocaml-cll/actions/workflows/main.yml/badge.svg)](https://github.com/jamsidedown/ocaml-cll/actions/workflows/main.yml)
+
 ## Requirements
 
 - OCaml
