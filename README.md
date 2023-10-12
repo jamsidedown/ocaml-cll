@@ -18,13 +18,37 @@ $ dune --version
 3.11.0
 ```
 
+## Setup
+
+Install dependencies
+```sh
+opam install . --deps-only --with-test -y
+```
+
+Build code
+```sh
+dune build
+```
+
 ## Testing
 
+Run unit tests
 ```sh
 $ dune test
 .................
 Ran: 17 tests in: 0.11 seconds.
 OK
+```
+
+Check code coverage
+```sh
+dune test --instrument-with bisect_ppx --force
+
+# show coverage summary
+bisect-ppx-report summary
+
+# create html coverage report
+bisect-ppx-report html
 ```
 
 ## Usage

@@ -15,14 +15,7 @@
 			]
 		}
 	},
-	"postCreateCommand": [
-		"sudo apt update",
-		"sudo apt install bubblewrap -y",
-		"opam init",
-		"echo 'eval $(opam env --switch=default)' >> ~/.bashrc",
-		". ~/.bashrc",
-		"opam install dune ocaml-lsp-server utop odoc ocamlformat dune-release -y"
-	]
+	"postCreateCommand": "sudo apt update; sudo apt install bubblewrap -y; opam init -y; echo 'eval $(opam env --switch=default)' >> ~/.bashrc; opam install dune ocaml-lsp-server utop odoc ocamlformat dune-release -y"
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
