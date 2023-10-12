@@ -27,3 +27,9 @@ setup.log
 
 # Local OPAM switch
 _opam/
+
+# coverage
+_coverage/
+
+# vs code
+.vscode/

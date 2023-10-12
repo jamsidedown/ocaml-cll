@@ -1,13 +1,10 @@
 type 'a node = private {
-  value: 'a;
-  mutable left: 'a node;
-  mutable right: 'a node;
+  value : 'a;
+  mutable left : 'a node;
+  mutable right : 'a node;
 }
 
-type 'a cll = private {
-  mutable head : 'a node option;
-  mutable length: int;
-}
+type 'a cll = private { mutable head : 'a node option; mutable length : int }
 
 val add : 'a cll -> 'a -> unit
 val pop : 'a cll -> 'a option

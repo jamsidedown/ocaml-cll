@@ -18,8 +18,12 @@
 (package
  (name cll)
  (synopsis "Circular linked list")
- (description "Circular doubly linked list with minimal operations")
- (depends ocaml dune)
+ (description "Mutable circular doubly linked list with minimal operations")
+ (depends
+  ocaml
+  dune
+  (ounit2 :with-test)
+  (bisect_ppx :with-test))
  (tags
   ("circular linked list")))
 

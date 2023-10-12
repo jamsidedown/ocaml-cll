@@ -1,4 +1,6 @@
 (library
  (public_name cll)
  (synopsis "Mutable circular linked list")
- (name cll))
+ (name cll)
+ (instrumentation
+  (backend bisect_ppx)))

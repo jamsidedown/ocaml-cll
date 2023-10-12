@@ -1,11 +1,10 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/alpine
+// README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
 {
-	"name": "Alpine",
+	"name": "Ubuntu",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/base:alpine-3.18",
+	"image": "mcr.microsoft.com/devcontainers/base:jammy",
 	"features": {
-		"ghcr.io/devcontainers/features/sshd:1": {},
 		"ghcr.io/devcontainers-contrib/features/ocaml-asdf:2": {},
 		"ghcr.io/devcontainers-contrib/features/opam-asdf:2": {}
 	},
@@ -15,16 +14,21 @@
 				"ocamllabs.ocaml-platform"
 			]
 		}
-	}
+	},
+	"postCreateCommand": [
+		"sudo apt update",
+		"sudo apt install bubblewrap -y",
+		"opam init",
+		"echo 'eval $(opam env --switch=default)' >> ~/.bashrc",
+		". ~/.bashrc",
+		"opam install dune ocaml-lsp-server utop odoc ocamlformat dune-release -y"
+	]
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
-
-	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "uname -a",
 
 	// Configure tool-specific properties.
 	// "customizations": {},
