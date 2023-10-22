@@ -139,3 +139,21 @@ Cll.to_list cll;;
 (* returns [3; 4; 5; 6; 1; 2] *)
 
 ```
+
+## Running examples
+
+### Codewars: Josephus problem
+
+From the project's root directory:
+
+```sh
+# intall utop
+$ opam install utop
+
+# install cll dev with opam
+$ opam install .
+
+# run the josphus_problem.ml toplevel script
+$ utop examples/josephus_problem.ml
+4
+```

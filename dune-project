@@ -20,10 +20,10 @@
  (synopsis "Circular linked list")
  (description "Mutable circular doubly linked list with minimal operations")
  (depends
-  ocaml
-  dune
-  (ounit2 :with-test)
-  (bisect_ppx :with-test))
+  (ocaml (>= 4.12.0))
+  (dune (>= 3.0.0))
+  (ounit2 (and :with-test (>= 2.2.0)))
+  (bisect_ppx (and :with-test (>= 2.0.0))))
  (tags
   ("circular linked list")))
 
