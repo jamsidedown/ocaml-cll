@@ -1,5 +1,3 @@
-#require "cll"
-
 (* https://www.codewars.com/kata/555624b601231dc7a400017a *)
 
 let rec range (start: int) (stop: int) : int list =
@@ -12,7 +10,7 @@ let josephus (n: int) (k: int) : int =
     | 1 ->
       (match Cll.pop cll with
         | None -> assert false
-        | Some value -> if cll.head = None then value else recurse k)
+        | Some value -> if (Cll.head cll) = None then value else recurse k)
     | x when x < 0 -> assert false
     | x ->
       Cll.next cll;
