@@ -1,5 +1,3 @@
-
-
 type 'a node = {
   value : 'a;
   mutable left : 'a node;
@@ -11,12 +9,6 @@ type 'a t = {
   mutable length : int;
   lookup: ('a, 'a node list) Hashtbl.t;
 }
-
-(* type 'a cll = {
-  mutable head : 'a node option;
-  mutable length : int;
-  lookup: ('a, 'a node) Hashtbl.t;
-} *)
 
 let add (lst : 'a t) (elem : 'a) : unit =
   match lst.head with
@@ -48,7 +40,7 @@ let add (lst : 'a t) (elem : 'a) : unit =
 let pop (lst : 'a t) : 'a option =
   let pop_node (node: 'a node) : unit =
     match Hashtbl.find_opt lst.lookup node.value with
-    | None | Some [] -> assert false
+    | None | Some [] -> () [@coverage off] (* should never reach here *)
     | Some [_] -> Hashtbl.remove lst.lookup node.value
     | Some nodes ->
       nodes
@@ -85,7 +77,7 @@ let init (lst : 'a list) : 'a t =
   let c_list = {
     head = None;
     length = 0;
-    lookup = Hashtbl.create 1024
+    lookup = Hashtbl.create 1024;
   } in
   let rec recurse (remaining : 'a list) : unit =
     match remaining with
@@ -118,7 +110,7 @@ let to_list (lst : 'a t) : 'a list =
 let find (lst: 'a t) (value: 'a) : bool =
   match Hashtbl.find_opt lst.lookup value with
   | None -> false
-  | Some [] -> assert false
+  | Some [] -> false [@coverage off] (* should never reach here *)
   | Some (first :: _) ->
     lst.head <- Some first;
     true

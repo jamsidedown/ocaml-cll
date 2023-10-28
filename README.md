@@ -51,6 +51,7 @@ bisect-ppx-report summary
 
 # create html coverage report
 bisect-ppx-report html
+open _coverage/index.html
 ```
 
 ## Usage
@@ -67,11 +68,11 @@ let cll = Cll.init [1; 2; 3; 4; 5; 6];;
   4
 *)
 
-Printf.printf "%i\n" cll.length;;
+Printf.printf "%i\n" (Cll.length cll);;
 (* prints 6 *)
 
-match cll.head with
-| Some node -> Printf.printf "%i\n" node.value
+match (Cll.head cll) with
+| Some value -> Printf.printf "%i\n" value
 | None -> ();;
 (* prints 1 *)
 
@@ -110,7 +111,7 @@ Cll.add cll 7;;
 *)
 
 match Cll.pop cll with
-| Some node -> Printf.printf "%i\n" node
+| Some value -> Printf.printf "%i\n" value
 | None -> ();;
 (* prints 7 *)
 (*
@@ -142,18 +143,33 @@ Cll.to_list cll;;
 
 ## Running examples
 
-### Codewars: Josephus problem
+There aren't many uses I'm aware of for a circular linked list, but I have found two programming puzzles where it's been handy.
+
+### Prerequisites
 
 From the project's root directory:
 
 ```sh
 # intall utop
 $ opam install utop
+```
 
-# install cll dev with opam
-$ opam install .
+### Codewars: Josephus problem
 
+```sh
 # run the josphus_problem.ml toplevel script
-$ utop examples/josephus_problem.ml
+$ dune utop . -- examples/josephus_problem.ml
 4
+```
+
+### Advent of Code 2020 day 23: Crab Cups
+
+By default only part one of this puzzle will run, as part two takes about 40 seconds on my laptop when running with utop.
+
+To enable part two, uncomment the last three lines in `examples/crab_cups.ml`.
+
+```sh
+# run part one of the crab cups toplevel script
+$ dune utop . -- examples/crab_cups.ml
+part one: 67384529
 ```

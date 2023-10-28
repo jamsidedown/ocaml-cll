@@ -1,14 +1,3 @@
-(* type 'a node = private {
-  value : 'a;
-  mutable left : 'a node;
-  mutable right : 'a node;
-} *)
-
-(* type 'a cll = private {
-  mutable head : 'a node option;
-  mutable length : int
-} *)
-
 type 'a t
 
 val add : 'a t -> 'a -> unit
