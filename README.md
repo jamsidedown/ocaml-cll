@@ -3,6 +3,8 @@ OCaml circular linked list library
 
 [![build and test](https://github.com/jamsidedown/ocaml-cll/actions/workflows/main.yml/badge.svg)](https://github.com/jamsidedown/ocaml-cll/actions/workflows/main.yml)
 
+[Documentation is available here](https://robanderson.dev/ocaml-cll/cll/Cll)
+
 ## Requirements
 
 - OCaml
@@ -54,93 +56,6 @@ bisect-ppx-report html
 open _coverage/index.html
 ```
 
-## Usage
-
-```ocaml
-let cll = Cll.init [1; 2; 3; 4; 5; 6];;
-(* 
- head
-  |
-  V
-  1
-6   2
-5   3
-  4
-*)
-
-Printf.printf "%i\n" (Cll.length cll);;
-(* prints 6 *)
-
-match (Cll.head cll) with
-| Some value -> Printf.printf "%i\n" value
-| None -> ();;
-(* prints 1 *)
-
-Cll.next cll;;
-(*
- head
-  |
-  V
-  2
-1   3
-6   4
-  5
-*)
-
-Cll.prev cll;;
-Cll.prev cll;;
-(*
- head
-  |
-  V
-  6
-5   1
-4   2
-  3
-*)
-
-Cll.add cll 7;;
-(*
- head
-  |
-  V
-  7
-6   1
-5   2
- 4 3
-*)
-
-match Cll.pop cll with
-| Some value -> Printf.printf "%i\n" value
-| None -> ();;
-(* prints 7 *)
-(*
- head
-  |
-  V
-  6
-5   1
-4   2
-  3
-*)
-
-Printf.printf "%b\n" (Cll.seek cll 3);;
-(* prints true *)
-(*
- head
-  |
-  V
-  3
-2   4
-1   5
-  6
-*)
-
-Cll.to_list cll;;
-(* returns [3; 4; 5; 6; 1; 2] *)
-
-```
-
 ## Running examples
 
 There aren't many uses I'm aware of for a circular linked list, but I have found two programming puzzles where it's been handy.
@@ -150,7 +65,7 @@ There aren't many uses I'm aware of for a circular linked list, but I have found
 From the project's root directory:
 
 ```sh
-# intall utop
+# install utop
 $ opam install utop
 ```
 

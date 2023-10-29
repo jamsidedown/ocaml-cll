@@ -7,18 +7,21 @@
 (source
  (github jamsidedown/ocaml-cll))
 
-(authors "Rob Anderson (jamsidedown)")
+(authors "Rob Anderson <opensource@robanderson.dev>")
 
-(maintainers "Rob Anderson (jamsidedown)")
+(maintainers "Rob Anderson <opensource@robanderson.dev>")
 
 (license MIT)
 
-(documentation https://github.com/jamsidedown/ocaml-cll)
+(documentation
+  https://robanderson.dev/ocaml-cll)
 
 (package
  (name cll)
- (synopsis "Circular linked list")
- (description "Mutable circular doubly linked list with minimal operations")
+ (synopsis "Mutable circular doubly linked list with minimal operations")
+ (description "
+  
+ ")
  (depends
   ocaml
   dune
@@ -26,5 +29,3 @@
   (bisect_ppx :with-test))
  (tags
   ("circular linked list")))
-
-; See the complete stanza docs at https://dune.readthedocs.io/en/stable/dune-files.html#dune-project
