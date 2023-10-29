@@ -12,7 +12,11 @@ on:
   #   # Prime the caches every Monday
   #   - cron: 0 1 * * MON
 
-permissions: "read-all"
+# permissions: "read-all"
+permissions:
+  contents: "write"
+  pages: "write"
+  id-token: "write"
 
 jobs:
   build-and-test:
@@ -31,9 +35,25 @@ jobs:
         run: "opam install . --deps-only --with-test"
       - name: "build"
         run: "opam exec -- dune build"
-      - name: "test"
-        run: "opam exec -- dune test"
-      - name: "coverage"
+      - name: "test and coverage"
         run: "opam exec -- dune runtest --instrument-with bisect_ppx --force"
       - name: "coverage report"
         run: "opam exec -- bisect-ppx-report summary"
+      - name: "install global dependencies"
+        run: "opam install odoc"
+      - name: "build docs"
+        run: "opam exec -- dune build @doc"
+      - name: "upload docs"
+        uses: "actions/upload-artifact@v3.1.3"
+        with:
+          name: "docs"
+          path: "_build/default/_doc/_html"
+      - name: "deploy docs"
+        uses: "peaceiris/actions-gh-pages@v3"
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          user_name: "github-actions[bot]"
+          user_email: "github-actions[bot]@users.noreply.github.com"
+          publish_dir: "_build/default/_doc/_html"
+          destination_dir: "docs"
+          enable_jekyll: true
