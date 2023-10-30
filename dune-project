@@ -18,9 +18,9 @@
 
 (package
  (name cll)
- (synopsis "Mutable circular doubly linked list with minimal operations")
+ (synopsis "Mutable circular doubly linked list")
  (description "
-  
+  A mutable circular doubly linked list designed for O(1) insertion and removal, O(n) traversal, and close to O(1) search using a backing hashtable.
  ")
  (depends
   ocaml

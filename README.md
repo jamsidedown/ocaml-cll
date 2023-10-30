@@ -5,10 +5,56 @@ OCaml circular linked list library
 
 [Documentation is available here](https://robanderson.dev/ocaml-cll/cll/Cll)
 
-## Requirements
+## Installation
+
+```sh
+$ opam install cll
+```
+
+## Usage
+
+To be run in the ocaml toplevel
+
+```ocaml
+let cll = Cll.init [ 1; 2; 3; 4; 5; 6 ];;
+
+Cll.head cll;;
+(* int option = Some 1 *)
+
+Cll.length cll;;
+(* int = 6 *)
+
+Cll.next cll;;
+Cll.head cll;;
+(* int option = Some 2 *)
+
+Cll.prev cll;;
+Cll.prev cll;;
+Cll.head cll;;
+(* int option = Some 6 *)
+
+Cll.add cll 7;;
+Cll.head cll;;
+(* int option = Some 7 *)
+
+Cll.pop cll;;
+(* int option = Some 7 *)
+Cll.head cll;;
+(* int option = Some 1 *)
+
+Cll.find cll 4;;
+(* bool = true *)
+Cll.head cll;;
+(* int option = Some 4 *)
+
+Cll.to_list cll;;
+(* int list = [4; 5; 6; 1; 2; 3] *)
+```
+
+## Development requirements
 
 - OCaml
-- opam
+- Opam
 - Dune
 
 ```sh
@@ -22,7 +68,7 @@ $ dune --version
 3.11.0
 ```
 
-## Setup
+## Development setup
 
 Install dependencies
 ```sh

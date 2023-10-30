@@ -1,6 +1,7 @@
 (** A mutable circular linked list.
-    Designed for fast ([O(1)]) insertion and removal, [O(n)] traversal, and
-    close to [O(1)] search using a backing hashtable. *)
+
+Designed for [O(1)] insertion and removal, [O(n)] traversal, and
+close to [O(1)] search using a backing hashtable. *)
 
 type 'a t
 (** The type of circular linked lists with elements of type ['a]. *)
