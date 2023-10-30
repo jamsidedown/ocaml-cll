@@ -1,0 +1,89 @@
+{0 cll}
+
+A mutable circular linked list.
+
+Designed for [O(1)] insertion and removal, [O(n)] traversal, and
+close to [O(1)] search using a backing hashtable.
+
+{{: https://github.com/jamsidedown/ocaml-cll }Project homepage on GitHub}
+
+{1 API Documentation}
+
+{!modules:
+  Cll
+}
+
+{1 Installation}
+
+{2 Install with opam}
+
+{@sh[
+  $ opam install cll
+]}
+
+{2 Install with dune}
+
+[cll] can be added as a dependency to a [dune] file
+
+{@dune[
+  (executable
+    (name foo)
+    (libraries cll))
+]}
+
+{2 Install from source}
+
+{@sh[
+  # if dune is not installed
+  $ opam install dune
+
+  # clone the github repo
+  $ git clone https://github.com/jamsidedown/ocaml-cll.git
+  $ cd ocaml-cll
+
+  # build with dune
+  $ dune build
+
+  # install to the current opam switch
+  $ opam install .
+]}
+
+{1 Usage}
+
+To be run in the ocaml toplevel
+
+{[
+  let cll = Cll.init [ 1; 2; 3; 4; 5; 6 ];;
+
+  Cll.head cll;;
+  (* int option = Some 1 *)
+
+  Cll.length cll;;
+  (* int = 6 *)
+
+  Cll.next cll;;
+  Cll.head cll;;
+  (* int option = Some 2 *)
+
+  Cll.prev cll;;
+  Cll.prev cll;;
+  Cll.head cll;;
+  (* int option = Some 6 *)
+
+  Cll.add cll 7;;
+  Cll.head cll;;
+  (* int option = Some 7 *)
+
+  Cll.pop cll;;
+  (* int option = Some 7 *)
+  Cll.head cll;;
+  (* int option = Some 1 *)
+
+  Cll.find cll 4;;
+  (* bool = true *)
+  Cll.head cll;;
+  (* int option = Some 4 *)
+
+  Cll.to_list cll;;
+  (* int list = [4; 5; 6; 1; 2; 3] *)
+]}
