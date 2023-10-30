@@ -7,6 +7,12 @@ close to [O(1)] search using a backing hashtable.
 
 {{: https://github.com/jamsidedown/ocaml-cll }Project homepage on GitHub}
 
+{1 API Documentation}
+
+{!modules:
+  Cll
+}
+
 {1 Installation}
 
 {2 Install with opam}
@@ -81,9 +87,3 @@ To be run in the ocaml toplevel
   Cll.to_list cll;;
   (* int list = [4; 5; 6; 1; 2; 3] *)
 ]}
-
-{1 API Documentation}
-
-{!modules:
-  Cll
-}

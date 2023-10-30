@@ -8,6 +8,8 @@ type 'a t
 
 (** {1 Creation} *)
 
+(** {2 init} *)
+
 val init : 'a list -> 'a t
 (** [Cll.init lst] initialises a circular linked list from the list [lst].
     After initialisation, the element at the start of the original list will be
@@ -30,6 +32,8 @@ val init : 'a list -> 'a t
     These functions can safely be called without modifying the underlying
     circular linked list. *)
 
+(** {2 head} *)
+
 val head : 'a t -> 'a option
 (** [Cll.head cll] returns the value at the current head of the circular linked
     list, or None if the list is empty.
@@ -40,6 +44,8 @@ val head : 'a t -> 'a option
         (* int option = Some 1 *)
     ]}
 *)
+
+(** {2 length} *)
 
 val length : 'a t -> int
 (** [Cll.length cll] returns the number of values stored in the circular linked
@@ -53,6 +59,8 @@ val length : 'a t -> int
     ]}
 *)
 
+(** {2 to_list} *)
+
 val to_list : 'a t -> 'a list
 (** [Cll.to_list cll] traverses and returns a list of all of the values in the
     circular linked list in order starting at the [head].
@@ -65,6 +73,8 @@ val to_list : 'a t -> 'a list
 *)
 
 (** {1 Traversal} *)
+
+(** {2 next} *)
 
 val next : 'a t -> unit
 (** [Cll.next cll] moves the head of the circular linked list to the node to
@@ -85,6 +95,8 @@ val next : 'a t -> unit
     ]}
 *)
 
+(** {2 prev} *)
+
 val prev : 'a t -> unit
 (** [Cll.prev cll] moves the head of the circular linked list to the node to
     the left of the current head. Equivalent of moving the head anticlockwise on
@@ -103,6 +115,8 @@ val prev : 'a t -> unit
         *)
     ]}
 *)
+
+(** {2 find} *)
 
 val find: 'a t -> 'a -> bool
 (** [Cll.find cll value] searches for a value in the circular linked list using
@@ -128,6 +142,8 @@ val find: 'a t -> 'a -> bool
         *)
     ]}
 *)
+
+(** {2 seek} *)
 
 val seek : 'a t -> 'a -> bool
 (** [Cll.seek cll value] searches for a value in the circular linked list by
@@ -159,6 +175,8 @@ val seek : 'a t -> 'a -> bool
 
 (** {1 Modification} *)
 
+(** {2 add} *)
+
 val add : 'a t -> 'a -> unit
 (** [Cll.add cll value] adds a new value to the circular linked list. The new
     value is inserted between the current head and the next value clockwise of
@@ -179,6 +197,8 @@ val add : 'a t -> 'a -> unit
         *)
     ]}
 *)
+
+(** {2 pop} *)
 
 val pop : 'a t -> 'a option
 (** [Cll.pop cll] removes the element currently at the head of the circular
