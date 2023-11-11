@@ -49,6 +49,16 @@ Cll.find cll 4;;
 Cll.head cll;;
 (* int option = Some 4 *)
 
+Cll.iter cll (fun x -> Printf.printf "%i\n")
+(*
+    4
+    5
+    6
+    1
+    2
+    3
+*)
+
 Cll.to_list cll;;
 (* int list = [4; 5; 6; 1; 2; 3] *)
 ```
