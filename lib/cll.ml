@@ -92,6 +92,23 @@ let init (lst : 'a list) : 'a t =
     recurse lst;
     c_list
 
+let iter (lst: 'a t) (f: 'a -> unit) : unit =
+  let rec recurse (start: 'a node) : unit =
+    match lst.head with
+    | None -> () [@coverage off] (* should never reach here *)
+    | Some head when head == start -> ()
+    | Some head ->
+      f head.value;
+      next lst;
+      recurse start
+    in
+  match lst.head with
+  | None -> ()
+  | Some head ->
+    f head.value;
+    next lst;
+    recurse head
+
 let to_list (lst : 'a t) : 'a list =
   let rec recurse (start : 'a node) : 'a list =
     match lst.head with
