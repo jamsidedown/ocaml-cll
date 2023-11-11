@@ -5,6 +5,8 @@ OCaml circular linked list library
 
 [Cll documentation](https://robanderson.dev/ocaml-cll/cll)
 
+[Opam package](https://opam.ocaml.org/packages/cll/)
+
 ## Installation
 
 ```sh
