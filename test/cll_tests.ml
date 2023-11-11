@@ -1,5 +1,10 @@
 open OUnit2
 
+module TestTypes = struct
+  type mutable_int = { mutable value: int }
+  type mutable_list = { mutable values: int list }
+end
+
 let create_empty_list _ =
   let cll = Cll.init [] in
   assert_equal (Cll.length cll) 0;
@@ -87,10 +92,7 @@ let next_on_list _ =
   let cll = Cll.init [ 1; 2; 3; 4 ] in
   Cll.next cll;
   assert_equal (Cll.length cll) 4;
-  match (Cll.head cll) with
-  | None -> assert false
-  | Some n ->
-    assert_equal n 2
+  assert_equal (Cll.head cll) (Some 2)
 
 let next_tests =
   "next" >::: [
@@ -108,15 +110,42 @@ let prev_on_list _ =
   let cll = Cll.init [ 1; 2; 3; 4 ] in
   Cll.prev cll;
   assert_equal (Cll.length cll) 4;
-  match (Cll.head cll) with
-  | None -> assert false
-  | Some n ->
-    assert_equal n 4
+  assert_equal (Cll.head cll) (Some 4)
 
 let prev_tests =
   "previous" >::: [
     "on empty list" >:: prev_on_empty;
     "on list of ints" >:: prev_on_list
+  ]
+
+let iter_returns_to_start _ =
+  let cll = Cll.init [ 1; 2; 3; 4 ] in
+  Cll.iter cll (fun _ -> ());
+  assert_equal (Cll.head cll) (Some 1)
+
+let iter_empty_does_nothing _ =
+  let cll = Cll.init [] in
+  Cll.iter cll (fun _ -> ());
+  assert_equal (Cll.head cll) None
+
+let iter_sums_with_mutable_value _ =
+  let test_value: TestTypes.mutable_int = { value = 0 } in
+  let cll = Cll.init [ 1; 2; 3; 4 ] in
+  Cll.iter cll (fun x -> test_value.value <- test_value.value + x);
+  assert_equal test_value.value 10
+
+let iter_outputs_to_list _ =
+  let test_list: TestTypes.mutable_list = { values = [] } in
+  let cll = Cll.init [ 1; 2; 3; 4 ] in
+  Cll.iter cll (fun x -> test_list.values <- x :: test_list.values);
+  assert_equal test_list.values [ 4; 3; 2; 1 ]
+
+let iter_tests =
+  "iter" >::: [
+    "returns to start" >:: iter_returns_to_start;
+    "does nothing when empty" >:: iter_empty_does_nothing;
+    "sums to mutable value" >:: iter_sums_with_mutable_value;
+    "outputs to mutable list" >:: iter_outputs_to_list;
   ]
 
 let to_list_from_empty _ =
@@ -168,26 +197,18 @@ let seek_when_contains_value _ =
   let cll = Cll.init [ 1; 2; 3; 4 ] in
   assert_equal (Cll.seek cll 2) true;
   assert_equal (Cll.length cll) 4;
-  match (Cll.head cll) with
-  | None -> assert false
-  | Some n ->
-    assert_equal n 2
+  assert_equal (Cll.head cll) (Some 2)
 
 let seek_when_doesn't_contain_value _ =
   let cll = Cll.init [ 1; 2; 3; 4 ] in
   assert_equal (Cll.seek cll 5) false;
   assert_equal (Cll.length cll) 4;
-  match (Cll.head cll) with
-  | None -> assert false
-  | Some n ->
-    assert_equal n 1
+  assert_equal (Cll.head cll) (Some 1)
 
 let seek_when_already_at_value _ =
   let cll = Cll.init [ 1; 2; 3; 4 ] in
   assert_equal (Cll.seek cll 1) true;
-  match (Cll.head cll) with
-  | None -> assert false
-  | Some n -> assert_equal n 1
+  assert_equal (Cll.head cll) (Some 1)
 
 let seek_tests =
   "seek" >::: [
@@ -204,6 +225,7 @@ let tests =
     pop_tests;
     next_tests;
     prev_tests;
+    iter_tests;
     to_list_tests;
     find_tests;
     seek_tests;
