@@ -43,5 +43,15 @@ Cll.find cll 4;;
 Cll.head cll;;
 (* int option = Some 4 *)
 
+Cll.iter cll (fun x -&gt; Printf.printf &quot;%i\n&quot;)
+(*
+  4
+  5
+  6
+  1
+  2
+  3
+*)
+
 Cll.to_list cll;;
 (* int list = [4; 5; 6; 1; 2; 3] *)</code></pre></div></body></html>
