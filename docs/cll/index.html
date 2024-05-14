@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"><head><title>index (cll.index)</title><link rel="stylesheet" href="../odoc.support/odoc.css"/><meta charset="utf-8"/><meta name="generator" content="odoc 2.3.1"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><script src="../odoc.support/highlight.pack.js"></script><script>hljs.initHighlightingOnLoad();</script></head><body class="odoc"><nav class="odoc-nav"><a href="../index.html">Up</a> – cll</nav><header class="odoc-preamble"><h1 id="cll"><a href="#cll" class="anchor"></a>cll</h1><p>A mutable circular linked list.</p><p>Designed for <code>O(1)</code> insertion and removal, <code>O(n)</code> traversal, and close to <code>O(1)</code> search using a backing hashtable.</p><p><a href="https://github.com/jamsidedown/ocaml-cll">Project homepage on GitHub</a></p></header><nav class="odoc-toc"><ul><li><a href="#api-documentation">API Documentation</a></li><li><a href="#installation">Installation</a><ul><li><a href="#install-with-opam">Install with opam</a></li><li><a href="#install-with-dune">Install with dune</a></li><li><a href="#install-from-source">Install from source</a></li></ul></li><li><a href="#usage">Usage</a></li></ul></nav><div class="odoc-content"><h2 id="api-documentation"><a href="#api-documentation" class="anchor"></a>API Documentation</h2><ul class="modules"><li><a href="Cll/index.html"><code>Cll</code></a> <span class="synopsis">A mutable circular linked list.</span></li></ul><h2 id="installation"><a href="#installation" class="anchor"></a>Installation</h2><h3 id="install-with-opam"><a href="#install-with-opam" class="anchor"></a>Install with opam</h3><pre class="language-sh"><code>$ opam install cll</code></pre><h3 id="install-with-dune"><a href="#install-with-dune" class="anchor"></a>Install with dune</h3><p><code>cll</code> can be added as a dependency to a <code>dune</code> file</p><pre class="language-dune"><code>(executable
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>index (cll.index)</title><meta charset="utf-8"/><link rel="stylesheet" href="../odoc.support/odoc.css"/><meta name="generator" content="odoc 2.4.2"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><script src="../odoc.support/highlight.pack.js"></script><script>hljs.initHighlightingOnLoad();</script></head><body class="odoc"><nav class="odoc-nav"><a href="../index.html">Up</a> – cll</nav><header class="odoc-preamble"><h1 id="cll"><a href="#cll" class="anchor"></a>cll</h1><p>A mutable circular linked list.</p><p>Designed for <code>O(1)</code> insertion and removal, <code>O(n)</code> traversal, and close to <code>O(1)</code> search using a backing hashtable.</p><p><a href="https://github.com/jamsidedown/ocaml-cll">Project homepage on GitHub</a></p></header><nav class="odoc-toc"><ul><li><a href="#api-documentation">API Documentation</a></li><li><a href="#installation">Installation</a><ul><li><a href="#install-with-opam">Install with opam</a></li><li><a href="#install-with-dune">Install with dune</a></li><li><a href="#install-from-source">Install from source</a></li></ul></li><li><a href="#usage">Usage</a></li></ul></nav><div class="odoc-content"><h2 id="api-documentation"><a href="#api-documentation" class="anchor"></a>API Documentation</h2><ul class="modules"><li><a href="Cll/index.html"><code>Cll</code></a> <span class="synopsis">A mutable circular linked list.</span></li></ul><h2 id="installation"><a href="#installation" class="anchor"></a>Installation</h2><h3 id="install-with-opam"><a href="#install-with-opam" class="anchor"></a>Install with opam</h3><pre class="language-sh"><code>$ opam install cll</code></pre><h3 id="install-with-dune"><a href="#install-with-dune" class="anchor"></a>Install with dune</h3><p><code>cll</code> can be added as a dependency to a <code>dune</code> file</p><pre class="language-dune"><code>(executable
   (name foo)
   (libraries cll))</code></pre><h3 id="install-from-source"><a href="#install-from-source" class="anchor"></a>Install from source</h3><pre class="language-sh"><code># if dune is not installed
 $ opam install dune
@@ -12,7 +12,7 @@ $ cd ocaml-cll
 $ dune build
 
 # install to the current opam switch
-$ opam install .</code></pre><h2 id="usage"><a href="#usage" class="anchor"></a>Usage</h2><p>To be run in the ocaml toplevel</p><pre class="language-ocaml"><code>let cll = Cll.init [ 1; 2; 3; 4; 5; 6 ];;
+$ opam install .</code></pre><h2 id="usage"><a href="#usage" class="anchor"></a>Usage</h2><p>To be run in the ocaml toplevel</p><pre class="language-sh"><code>$ dune utop</code></pre><pre class="language-ocaml"><code>let cll = Cll.init [ 1; 2; 3; 4; 5; 6 ];;
 
 Cll.head cll;;
 (* int option = Some 1 *)
@@ -43,7 +43,7 @@ Cll.find cll 4;;
 Cll.head cll;;
 (* int option = Some 4 *)
 
-Cll.iter cll (fun x -&gt; Printf.printf &quot;%i\n&quot;)
+Cll.iter cll (fun x -&gt; Printf.printf &quot;%i\n&quot; x)
 (*
   4
   5
