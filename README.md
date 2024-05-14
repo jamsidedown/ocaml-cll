@@ -17,6 +17,10 @@ $ opam install cll
 
 To be run in the ocaml toplevel
 
+```sh
+$ dune utop
+```
+
 ```ocaml
 let cll = Cll.init [ 1; 2; 3; 4; 5; 6 ];;
 
@@ -49,7 +53,7 @@ Cll.find cll 4;;
 Cll.head cll;;
 (* int option = Some 4 *)
 
-Cll.iter cll (fun x -> Printf.printf "%i\n")
+Cll.iter cll (fun x -> Printf.printf "%i\n" x)
 (*
     4
     5
