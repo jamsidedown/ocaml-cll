@@ -59,23 +59,6 @@ val length : 'a t -> int
     ]}
 *)
 
-(** {2 iter} *)
-
-val iter: 'a t -> ('a -> unit) -> unit
-(** [Cll.iter cll f] traverses and applys the function [f] to each element in
-    the circular linked list in order, starting at the [head]
-
-    {[
-        let cll = Cll.init [ 1; 2; 3; 4 ] in
-        let (>>) f g x = g(f(x)) in
-        Cll.iter cll (string_of_int >> print_endline)
-        (* 1
-           2
-           3
-           4 *)
-    ]}
-    *)
-
 (** {2 to_list} *)
 
 val to_list : 'a t -> 'a list
@@ -236,5 +219,22 @@ val pop : 'a t -> 'a option
             5   3
               4
         *)
+    ]}
+*)
+
+(** {2 iter} *)
+
+val iter: 'a t -> ('a -> unit) -> unit
+(** [Cll.iter cll f] traverses and applys the function [f] to each element in
+    the circular linked list in order, starting at the [head]
+
+    {[
+        let cll = Cll.init [ 1; 2; 3; 4 ] in
+        let (>>) f g x = g(f(x)) in
+        Cll.iter cll (string_of_int >> print_endline)
+        (* 1
+           2
+           3
+           4 *)
     ]}
 *)

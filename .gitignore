@@ -33,3 +33,6 @@ _coverage/
 
 # vs code
 .vscode/
+
+# intellij
+.idea/
